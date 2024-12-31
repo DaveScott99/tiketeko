@@ -1,6 +1,7 @@
 package com.tiketeko.ticket.controller;
 
-import com.tiketeko.ticket.dto.request.TickerRegistryDTO;
+import com.tiketeko.ticket.dto.request.TicketRegistryDTO;
+import com.tiketeko.ticket.dto.request.TicketUpdateDTO;
 import com.tiketeko.ticket.dto.response.TicketDTO;
 import com.tiketeko.ticket.service.TicketService;
 import org.springframework.data.domain.Page;
@@ -29,8 +30,23 @@ public class TicketController {
         return ResponseEntity.ok(ticketService.list(pageable));
     }
 
+    @GetMapping("/{id}")
+    ResponseEntity<TicketDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(ticketService.findById(id));
+    }
+
     @PostMapping
-    ResponseEntity<TicketDTO> create(@RequestBody TickerRegistryDTO tickerRegistryDTO) {
-        return new ResponseEntity<>(ticketService.create(tickerRegistryDTO), HttpStatus.CREATED);
+    ResponseEntity<TicketDTO> create(@RequestBody TicketRegistryDTO ticketRegistryDTO) {
+        return new ResponseEntity<>(ticketService.create(ticketRegistryDTO), HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/{id}")
+    ResponseEntity<TicketUpdateDTO> update(@PathVariable Long id, @RequestBody TicketUpdateDTO ticketUpdateDTO) {
+        return ResponseEntity.ok(ticketService.update(id, ticketUpdateDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<TicketDTO> delete(@PathVariable Long id) {
+        return ResponseEntity.ok(ticketService.delete(id));
     }
 }

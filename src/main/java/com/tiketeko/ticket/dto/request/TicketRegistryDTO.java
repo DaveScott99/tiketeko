@@ -5,7 +5,7 @@ import com.tiketeko.ticket.model.Ticket;
 
 import java.io.Serializable;
 
-public class TickerRegistryDTO implements Serializable {
+public class TicketRegistryDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -15,10 +15,10 @@ public class TickerRegistryDTO implements Serializable {
     @JsonProperty(value = "owner")
     private String owner;
 
-    public TickerRegistryDTO() {
+    public TicketRegistryDTO() {
     }
 
-    public TickerRegistryDTO(Ticket ticket) {
+    public TicketRegistryDTO(Ticket ticket) {
         this.description = ticket.getDescription();
         this.owner = ticket.getOwner();
     }
