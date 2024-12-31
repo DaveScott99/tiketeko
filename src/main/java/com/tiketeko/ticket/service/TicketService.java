@@ -3,10 +3,9 @@ package com.tiketeko.ticket.service;
 import com.tiketeko.ticket.dto.mapper.TicketMapper;
 import com.tiketeko.ticket.dto.response.TicketDTO;
 import com.tiketeko.ticket.repository.TicketRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TicketService {
@@ -19,8 +18,8 @@ public class TicketService {
         this.ticketMapper = ticketMapper;
     }
 
-    public List<TicketDTO> getAll() {
-        return ticketRepository.findAll().stream().map(ticketMapper::toDto).collect(Collectors.toList());
+    public Page<TicketDTO> getAll(Pageable pageable) {
+        return ticketRepository.findAll(pageable).map(ticketMapper::toDto);
     }
 
 }
