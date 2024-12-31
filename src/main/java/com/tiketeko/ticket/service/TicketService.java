@@ -6,6 +6,7 @@ import com.tiketeko.ticket.dto.request.TicketRegistryDTO;
 import com.tiketeko.ticket.dto.request.TicketUpdateDTO;
 import com.tiketeko.ticket.dto.response.TicketDTO;
 import com.tiketeko.ticket.model.Ticket;
+import com.tiketeko.ticket.model.enums.TicketStatus;
 import com.tiketeko.ticket.repository.TicketRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
@@ -68,6 +69,7 @@ public class TicketService {
         Ticket entity = ticketRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
         entity.setOwner(ticketAssignDTO.getName());
         entity.setUpdatedAt(new Date().toInstant());
+        entity.setStatus(TicketStatus.ON_PROGRESS);
         return ticketMapper.toDto(ticketRepository.save(entity));
     }
 }
