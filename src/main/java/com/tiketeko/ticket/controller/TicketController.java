@@ -1,5 +1,6 @@
 package com.tiketeko.ticket.controller;
 
+import com.tiketeko.ticket.dto.request.TicketAssignDTO;
 import com.tiketeko.ticket.dto.request.TicketRegistryDTO;
 import com.tiketeko.ticket.dto.request.TicketUpdateDTO;
 import com.tiketeko.ticket.dto.response.TicketDTO;
@@ -48,5 +49,10 @@ public class TicketController {
     @DeleteMapping("/{id}")
     ResponseEntity<TicketDTO> delete(@PathVariable Long id) {
         return ResponseEntity.ok(ticketService.delete(id));
+    }
+
+    @PatchMapping("/{id}/assign")
+    ResponseEntity<TicketDTO> assign(@PathVariable Long id, @RequestBody TicketAssignDTO ticketAssignDTO) {
+        return ResponseEntity.ok(ticketService.assign(id, ticketAssignDTO));
     }
 }

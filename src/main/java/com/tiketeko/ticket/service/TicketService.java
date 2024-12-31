@@ -1,6 +1,7 @@
 package com.tiketeko.ticket.service;
 
 import com.tiketeko.ticket.dto.mapper.TicketMapper;
+import com.tiketeko.ticket.dto.request.TicketAssignDTO;
 import com.tiketeko.ticket.dto.request.TicketRegistryDTO;
 import com.tiketeko.ticket.dto.request.TicketUpdateDTO;
 import com.tiketeko.ticket.dto.response.TicketDTO;
@@ -60,6 +61,13 @@ public class TicketService {
     public TicketDTO delete(Long id) {
         Ticket entity = ticketRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
         entity.setDeletedAt(new Date().toInstant());
+        return ticketMapper.toDto(ticketRepository.save(entity));
+    }
+
+    public TicketDTO assign(Long id, TicketAssignDTO ticketAssignDTO) {
+        Ticket entity = ticketRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
+        entity.setOwner(ticketAssignDTO.getName());
+        entity.setUpdatedAt(new Date().toInstant());
         return ticketMapper.toDto(ticketRepository.save(entity));
     }
 }
