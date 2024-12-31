@@ -7,8 +7,6 @@ import java.io.Serializable;
 
 public class TickerRegistryDTO implements Serializable {
 
-    private Long id;
-
     @JsonProperty(value = "description")
     private String description;
 
@@ -16,7 +14,6 @@ public class TickerRegistryDTO implements Serializable {
     }
 
     public TickerRegistryDTO(Ticket ticket) {
-        this.id = ticket.getId();
         this.description = ticket.getDescription();
     }
 
@@ -28,11 +25,4 @@ public class TickerRegistryDTO implements Serializable {
         this.description = description;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

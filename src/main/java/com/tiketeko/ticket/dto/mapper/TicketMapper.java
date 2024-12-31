@@ -27,7 +27,6 @@ public class TicketMapper {
 
         Ticket entity = new Ticket();
 
-        entity.setId(tickerRegistryDTO.getId());
         entity.setDescription(tickerRegistryDTO.getDescription());
         entity.setStatus("PENDENTE");
         entity.setCreatedAt(new Date().toInstant());
