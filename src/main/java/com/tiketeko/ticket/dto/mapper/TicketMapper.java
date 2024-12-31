@@ -3,6 +3,7 @@ package com.tiketeko.ticket.dto.mapper;
 import com.tiketeko.ticket.dto.request.TickerRegistryDTO;
 import com.tiketeko.ticket.dto.response.TicketDTO;
 import com.tiketeko.ticket.model.Ticket;
+import com.tiketeko.ticket.model.enums.TicketStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -28,7 +29,7 @@ public class TicketMapper {
         Ticket entity = new Ticket();
 
         entity.setDescription(tickerRegistryDTO.getDescription());
-        entity.setStatus("PENDENTE");
+        entity.setStatus(TicketStatus.PENDING);
         entity.setCreatedAt(new Date().toInstant());
 
         return entity;

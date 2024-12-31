@@ -1,9 +1,9 @@
 package com.tiketeko.ticket.model;
 
+import com.tiketeko.ticket.model.enums.TicketStatus;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "ticket")
@@ -13,17 +13,17 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String description;
-    private String status;
+    private Integer status;
     private Instant createdAt;
 
     public Ticket() {
     }
 
-    public Ticket(long id, String description, String status, Instant createdAt) {
+    public Ticket(long id, String description, TicketStatus status, Instant createdAt) {
         this.id = id;
         this.description = description;
-        this.status = status;
         this.createdAt = createdAt;
+        setStatus(status);
     }
 
     public long getId() {
@@ -42,12 +42,14 @@ public class Ticket {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
+    public TicketStatus getStatus() {
+        return TicketStatus.valueOf(status);
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(TicketStatus status) {
+        if (status != null) {
+            this.status = status.getCode();
+        }
     }
 
     public Instant getCreatedAt() {

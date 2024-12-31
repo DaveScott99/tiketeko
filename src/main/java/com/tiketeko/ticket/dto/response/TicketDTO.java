@@ -2,6 +2,7 @@ package com.tiketeko.ticket.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tiketeko.ticket.model.Ticket;
+import com.tiketeko.ticket.model.enums.TicketStatus;
 
 import java.time.Instant;
 
@@ -14,7 +15,7 @@ public class TicketDTO {
     private String description;
 
     @JsonProperty(value = "status")
-    private String status;
+    private TicketStatus status;
 
     @JsonProperty(value = "createdAt")
     private Instant createdAt;
