@@ -1,5 +1,6 @@
 package com.tiketeko.ticket.controller;
 
+import com.tiketeko.ticket.dto.response.TicketDTO;
 import com.tiketeko.ticket.model.Ticket;
 import com.tiketeko.ticket.service.TicketService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class TicketController {
     }
 
     @GetMapping
-    public List<Ticket> list() {
+    public List<TicketDTO> list() {
         return ticketService.getAll();
     }
 }

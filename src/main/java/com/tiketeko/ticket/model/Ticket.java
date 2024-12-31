@@ -2,6 +2,7 @@ package com.tiketeko.ticket.model;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity
@@ -13,12 +14,12 @@ public class Ticket {
     private long id;
     private String description;
     private String status;
-    private LocalDate createdAt;
+    private Instant createdAt;
 
     public Ticket() {
     }
 
-    public Ticket(long id, String description, String status, LocalDate createdAt) {
+    public Ticket(long id, String description, String status, Instant createdAt) {
         this.id = id;
         this.description = description;
         this.status = status;
@@ -49,11 +50,11 @@ public class Ticket {
         this.status = status;
     }
 
-    public LocalDate getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 }
