@@ -31,6 +31,7 @@ public class TicketMapper {
         entity.setDescription(tickerRegistryDTO.getDescription());
         entity.setStatus(TicketStatus.PENDING);
         entity.setCreatedAt(new Date().toInstant());
+        entity.setOwner(tickerRegistryDTO.getOwner());
 
         return entity;
     }
