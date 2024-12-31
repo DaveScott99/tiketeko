@@ -55,4 +55,9 @@ public class TicketController {
     ResponseEntity<TicketDTO> assign(@PathVariable Long id, @RequestBody TicketAssignDTO ticketAssignDTO) {
         return ResponseEntity.ok(ticketService.assign(id, ticketAssignDTO));
     }
+
+    @PatchMapping("/{id}/unassign")
+    ResponseEntity<TicketDTO> unassign(@PathVariable Long id) {
+        return ResponseEntity.ok(ticketService.unassign(id));
+    }
 }

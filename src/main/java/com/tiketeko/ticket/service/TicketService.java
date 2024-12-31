@@ -72,4 +72,12 @@ public class TicketService {
         entity.setStatus(TicketStatus.ON_PROGRESS);
         return ticketMapper.toDto(ticketRepository.save(entity));
     }
+
+    public TicketDTO unassign(Long id) {
+        Ticket entity = ticketRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
+        entity.setOwner(null);
+        entity.setUpdatedAt(new Date().toInstant());
+        entity.setStatus(TicketStatus.PENDING);
+        return ticketMapper.toDto(ticketRepository.save(entity));
+    }
 }
