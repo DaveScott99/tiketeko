@@ -23,8 +23,20 @@ public class TicketService {
         return ticketRepository.findAll(pageable).map(ticketMapper::toDto);
     }
 
+    public TicketDTO findById(Long id) {
+        return ticketMapper.toDto(ticketRepository.findById(id).orElseThrow(() -> new RuntimeException("Ticket not found")));
+    }
+
     public TicketDTO create(TickerRegistryDTO ticketDTO) {
         return ticketMapper.toDto(ticketRepository.save(ticketMapper.toEntityRegister(ticketDTO)));
     }
 
+    public TicketDTO update(Long id, TickerRegistryDTO ticketDTO) {
+        ticketRepository.findById(id).orElseThrow(() -> new RuntimeException("Ticket not found"));
+        return ticketMapper.toDto(ticketRepository.save(ticketMapper.toEntityRegister(ticketDTO)));
+    }
+
+    public void delete(Long id) {
+        ticketRepository.deleteById(id);
+    }
 }
