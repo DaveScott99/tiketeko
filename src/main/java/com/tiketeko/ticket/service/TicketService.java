@@ -62,6 +62,7 @@ public class TicketService {
     public TicketDTO delete(Long id) {
         Ticket entity = ticketRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
         entity.setDeletedAt(new Date().toInstant());
+        entity.setStatus(TicketStatus.CLOSED);
         return ticketMapper.toDto(ticketRepository.save(entity));
     }
 
@@ -77,7 +78,21 @@ public class TicketService {
         Ticket entity = ticketRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
         entity.setOwner(null);
         entity.setUpdatedAt(new Date().toInstant());
-        entity.setStatus(TicketStatus.PENDING);
+        entity.setStatus(TicketStatus.OPEN);
+        return ticketMapper.toDto(ticketRepository.save(entity));
+    }
+
+    public TicketDTO close(Long id) {
+        Ticket entity = ticketRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
+        entity.setStatus(TicketStatus.CLOSED);
+        entity.setUpdatedAt(new Date().toInstant());
+        return ticketMapper.toDto(ticketRepository.save(entity));
+    }
+
+    public TicketDTO finish(Long id) {
+        Ticket entity = ticketRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
+        entity.setStatus(TicketStatus.FINISHED);
+        entity.setUpdatedAt(new Date().toInstant());
         return ticketMapper.toDto(ticketRepository.save(entity));
     }
 }

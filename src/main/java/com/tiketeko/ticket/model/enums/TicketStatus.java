@@ -2,9 +2,11 @@ package com.tiketeko.ticket.model.enums;
 
 public enum TicketStatus {
 
-    PENDING(1),
-    ON_PROGRESS(2),
-    COMPLETE(3);
+    OPEN(1),
+    PENDING(2),
+    ON_PROGRESS(3),
+    FINISHED(4),
+    CLOSED(5);
 
     private int code;
 

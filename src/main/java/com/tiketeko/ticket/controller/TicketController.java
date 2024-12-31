@@ -60,4 +60,14 @@ public class TicketController {
     ResponseEntity<TicketDTO> unassign(@PathVariable Long id) {
         return ResponseEntity.ok(ticketService.unassign(id));
     }
+
+    @PatchMapping("/{id}/finish")
+    ResponseEntity<TicketDTO> finish(@PathVariable Long id) {
+        return ResponseEntity.ok(ticketService.finish(id));
+    }
+
+    @PatchMapping("/{id}/close")
+    ResponseEntity<TicketDTO> close(@PathVariable Long id) {
+        return ResponseEntity.ok(ticketService.close(id));
+    }
 }
